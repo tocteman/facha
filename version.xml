@@ -2,12 +2,11 @@
 <!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
 
 
-
 <version>
 	<application>facha</application>
 	<type>plugins.themes</type>
-	<release>1.0.1.5</release>
+	<release>1.0.1.8</release>
 	<date>2022-06-22</date>
 	<lazy-load>1</lazy-load>
-  <class>FachaThemePlugin</class>
+  <class>FachaPlugin</class>
 </version>
