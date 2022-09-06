@@ -1,16 +1,29 @@
 <?php
 
 use PKP\plugins\ThemePlugin;
-class FachaThemePlugin extends ThemePlugin {
-    public function init() {
-        $this->setParent('defaultthemeplugin');
+use PKP\session\SessionManager;
 
-        $this->addStyle('child-stylesheet', 'styles/index.less');
-	}
-    function getDisplayName() {
-        return 'Facha Theme';
+
+class FachaThemePlugin extends ThemePlugin
+{
+    public function isActive()
+    {
+        if (SessionManager::isDisabled()) {
+            return true;
+        }
+        return parent::isActive();
     }
-    function getDescription() {
-        return 'first attempt';
+    public function init()
+    {
+        $this->addStyle('stylesheet', 'styles/index.less');
     }
+    public function getDisplayName()
+    {
+        return __('Facha Theme');
+    }
+    public function getDescription()
+    {
+        return __('seguimos');
+    }
+
 }

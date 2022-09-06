@@ -1,0 +1,42 @@
+<div class="cmp_spotlights">
+
+	<ul class="spotlights">
+		{foreach name="spotlights" from=$spotlights item=spotlight}
+			{assign var=item value=$spotlight->getSpotlightItem()}
+			{assign var=assocType value=$spotlight->getAssocType()}
+			{assign var=coverImage value=""}
+			{assign var=coverImageUrl value=""}
+			{assign var=targetUrl value=""}
+			{if $assocType == \APP\spotlight\Spotlight::SPOTLIGHT_TYPE_BOOK}
+				{assign var=type value="is_book"}
+				{assign var=coverImage value=$item->getCoverImage()}
+				{capture assign=targetUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="book" path=$item->getBestId()}{/capture}
+				{capture assign=coverImageUrl}{url router=PKPApplication::ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$item->getId()}{/capture}
+			{elseif $assocType == \APP\spotlight\Spotlight::SPOTLIGHT_TYPE_SERIES}
+				{assign var=type value="is_series"}
+				{assign var=coverImage value=$item->getImage()}
+				{capture assign=targetUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$item->getPath()}{/capture}
+				{capture assign=coverImageUrl}{url page="catalog" op="thumbnail" type="series" id=$item->getId()}{/capture}
+			{/if}
+			{assign var=hasCoverImage value=""}
+			{if $coverImage}
+				{assign var=hasCoverImage value="has_image"}
+			{/if}
+			{assign var=description value=""}
+			{if $spotlight->getLocalizedDescription()}
+				{assign var=description value=$spotlight->getLocalizedDescription()|truncate:600|strip_unsafe_html}
+			{else}
+				{if $assocType == \APP\spotlight\Spotlight::SPOTLIGHT_TYPE_SERIES}
+					{assign var=description value=$item->getLocalizedDescription()|truncate:600|strip_unsafe_html}
+				{elseif $assocType == \APP\spotlight\Spotlight::SPOTLIGHT_TYPE_BOOK}
+					{assign var=description value=$item->getLocalizedAbstract()|truncate:600|strip_unsafe_html}
+				{/if}
+			{/if}
+
+			<li class="spotlight_{$smarty.foreach.spotlights.iteration}{if $smarty.foreach.spotlights.iteration == 1} current{/if}">
+				{include file="frontend/objects/spotlight.tpl"}
+			</li>
+		{/foreach}
+	</ul>
+</div>
+
