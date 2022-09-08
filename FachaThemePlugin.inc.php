@@ -1,16 +1,11 @@
 <?php
 
-use PKP\plugins\ThemePlugin;
-use PKP\session\SessionManager;
-
+import('lib.pkp.classes.plugins.ThemePlugin')
 
 class FachaThemePlugin extends ThemePlugin
 {
     public function isActive()
     {
-        if (SessionManager::isDisabled()) {
-            return true;
-        }
         return parent::isActive();
     }
     public function init()
