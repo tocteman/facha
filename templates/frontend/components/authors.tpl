@@ -1,10 +1,11 @@
 <div class="item authors" style="padding-top:1rem;">
 
-	{* Only show editors for edited volumes *}
-	{if $monograph->getWorkType() == $monograph::WORK_TYPE_EDITED_VOLUME && $editors|@count && !$isChapterRequest}
-		{assign var="authors" value=$editors}
-		{assign var="identifyAsEditors" value=true}
-	{/if}
+  {* Only show editors for edited volumes *}
+				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
+					{assign var="authors" value=$editors}
+					{assign var="identifyAsEditors" value=true}
+				{/if}
+
 
 	{* Show short author lists on multiple lines *}
 	{if $authors|@count < 5}

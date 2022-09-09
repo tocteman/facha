@@ -21,7 +21,7 @@
 				<div class="pkp_site_name_wrapper">
 					<div class="pkp_site_name">
 					{capture assign="homeUrl"}
-						{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}
+            {url page="index" router=$smarty.const.ROUTE_PAGE}
 					{/capture}
 					{if $displayPageHeaderLogo}
 						<a href="{$homeUrl}" class="logo">
