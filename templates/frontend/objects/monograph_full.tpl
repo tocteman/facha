@@ -117,7 +117,10 @@
         <div class="book-info"
         v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }"
         >
-	{if count($publicationFormats)}
+
+
+			{* Publication formats *}
+			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
 
@@ -133,9 +136,6 @@
 								{break}
 							{/if}
 						{/foreach}
-						{if $publicationFormat->getDoi()}
-							{assign var=hasPubId value=true}
-						{/if}
 
 						{* Skip if we don't have any information to print about this pub format *}
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
@@ -147,7 +147,8 @@
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
 								<h2 class="pkp_screen_reader">
-                Detalles
+									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
+									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h2>
 
 								<div class="sub_item item_heading format">
@@ -157,7 +158,7 @@
 								</div>
 							{else}
 								<h2 class="pkp_screen_reader">
-                  Detalles
+									{translate key="monograph.miscellaneousDetails"}
 								</h2>
 							{/if}
 
@@ -176,40 +177,12 @@
 								{/foreach}
 							{/if}
 
-
-              {* Publication Date *}
-                    {if $publication->getData('datePublished')}
-                      <div class="item date_published">
-                        <div class="sub_item">
-                          <h2 class="label">
-                            {if $publication->getData('datePublished')|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
-                              {translate key="catalog.forthcoming"}
-                            {else}
-                              {translate key="catalog.published"}
-                            {/if}
-                          </h2>
-                          <div class="value">
-                            {* If this is the original version *}
-                            {if $firstPublication->getId() === $publication->getId()}
-                              <span>{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}</span>
-                              {* If this is an updated version *}
-                            {else}
-                              <span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}</span>
-                            {/if}
-                          </div>
-                        </div>
-                      </div>
-                    {/if}
-
-
 							{* Dates of publication *}
 							{if $publicationDates}
-                <h3>algo</h3>
 								{foreach from=$publicationDates item=publicationDate}
 									<div class="sub_item date">
 										<h3 class="label">
 											{$publicationDate->getNameForONIXCode()|escape}
-											{$publicationDate->getReadableDates()|escape}
 										</h3>
 										<div class="value">
 											{assign var=dates value=$publicationDate->getReadableDates()}
@@ -219,6 +192,11 @@
 											{else}
 												{* @todo the &mdash; ought to be translateable *}
 												{$dates[0]|escape}&mdash;{$dates[1]|escape}
+											{/if}
+											{if $publicationDate->isHijriCalendar()}
+												<div class="hijri">
+													{translate key="common.dateHijri"}
+												</div>
 											{/if}
 										</div>
 									</div>
@@ -244,12 +222,12 @@
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
-                <h3>
-                Dimensiones Físicas
-                </h3>
-                <p>
-                {$publicationFormat->getDimensions()|escape}
-                </p>
+									<h2 class="label">
+										{translate key="monograph.publicationFormat.productDimensions"}
+									</h2>
+									<div class="value">
+										{$publicationFormat->getDimensions()|escape}
+									</div>
 								</div>
 							{/if}
 						</div>
@@ -257,7 +235,8 @@
 				{/foreach}
 			{/if}
 
-         </div>
+
+          </div>
         <div class="book-praise"
         v-bind="{ 'shown': infoType === 'praise', 'hidden': infoType !== 'praise' }"
         >
@@ -266,36 +245,26 @@
 					<h2 class="pkp_screen_reader">
 						Tabla de Contenidos
 					</h2>
-					<ol>
+					<ul>
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
-								{if $chapter->isPageEnabled()}
-									{if $publication->getId() === $currentPublication->getId()}
-										<a href="{url page="catalog" op="book"
-														 path=$monograph->getBestId()|to_array:"chapter":$chapter->getSourceChapterId()}">
-									{else}
-										<a href="{url page="catalog" op="book" path=$monograph->getBestId()|to_array:"version":$publication->getId():"chapter":$chapter->getSourceChapterId()}">
-									{/if}
-								{/if}
-								<div class="book-chapter">
-                <h4 class="book-chapter-title">
+								<div class="chapter-title">
 									{$chapter->getLocalizedTitle()|escape}
-                </h4>
 									{if $chapter->getLocalizedSubtitle() != ''}
-										<div class="subtitle">
+										<div class="chapter-subtitle">
 											{$chapter->getLocalizedSubtitle()|escape}
 										</div>
 									{/if}
-									{if $chapter->getLocalizedAbstract() != ''}
-										<div class="book-chapter-abstract">
-											{$chapter->getLocalizedAbstract()}
+								</div>
+                <div>
+									{if $chapter->getLocalizedData('abstract') != ''}
+										<div class="chapter-subtitle">
+											{$chapter->getLocalizedData('abstract')}
 										</div>
 									{/if}
-								</div>
-								{if $chapter->isPageEnabled()}
-									</a>
-								{/if}
+
+                </div>
 								{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
 								{if $authorString != $chapterAuthors}
 									<div class="authors">
@@ -303,6 +272,17 @@
 									</div>
 								{/if}
 
+								{* DOI (requires plugin) *}
+								{foreach from=$pubIdPlugins item=pubIdPlugin}
+									{if $pubIdPlugin->getPubIdType() != 'doi'}
+										{continue}
+									{/if}
+									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
+									{if $pubId}
+										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+									{/if}
+								{/foreach}
 
 								{* Display any files that are assigned to this chapter *}
 								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
@@ -328,8 +308,9 @@
 									</div>
 								{/if}
 							</li>
+
 						{/foreach}
-					</ol>
+					</ul>
 				</div>
 			{/if}
 
