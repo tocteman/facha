@@ -92,6 +92,9 @@
         {if $hasBiographies}
           <div class="item author_bios">
             {foreach from=$publication->getData('authors') item=author}
+              <h2>
+                {$author->getFullName()|escape}
+              </h2>
               {if $author->getLocalizedBiography()}
                 <div class="sub_item">
                   <h2 class="label">
@@ -99,8 +102,6 @@
                       {capture assign="authorName"}{$author->getFullName()|escape}{/capture}
                       {capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
                       {translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
-                    {else}
-                      {$author->getFullName()|escape}
                     {/if}
                   </h2>
                   <div class="author-bio">
@@ -319,3 +320,4 @@
 
 
 </div>
+
