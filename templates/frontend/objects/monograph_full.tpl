@@ -83,13 +83,6 @@
         <div class="book-authors"
         v-bind="{ 'shown': infoType === 'authors', 'hidden': infoType !== 'authors' }"
         >
-        {assign var="hasBiographies" value=0}
-        {foreach from=$publication->getData('authors') item=author}
-          {if $author->getLocalizedBiography()}
-            {assign var="hasBiographies" value=$hasBiographies+1}
-          {/if}
-        {/foreach}
-        {if $hasBiographies}
           <div class="item author_bios">
             {foreach from=$publication->getData('authors') item=author}
               <h2>
@@ -111,7 +104,6 @@
               {/if}
             {/foreach}
           </div>
-        {/if}
         </div>
 
 
