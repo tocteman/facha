@@ -10,7 +10,7 @@
 	</title>
 
   <script src="https://unpkg.com/petite-vue" defer init></script>
-  <script src="//unpkg.com/alpinejs" defer></script>
+  <link rel="stylesheet" href="https://use.typekit.net/nhv1cug.css">
 
 	{load_header context="frontend"}
 	{load_stylesheet context="frontend"}

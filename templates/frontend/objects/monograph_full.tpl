@@ -83,27 +83,11 @@
         <div class="book-authors"
         v-bind="{ 'shown': infoType === 'authors', 'hidden': infoType !== 'authors' }"
         >
-          <div class="item author_bios">
             {foreach from=$publication->getData('authors') item=author}
               <h2>
                 {$author->getFullName()|escape}
               </h2>
-              {if $author->getLocalizedBiography()}
-                <div class="sub_item">
-                  <h2 class="label">
-                    {if $author->getLocalizedAffiliation()}
-                      {capture assign="authorName"}{$author->getFullName()|escape}{/capture}
-                      {capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
-                      {translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
-                    {/if}
-                  </h2>
-                  <div class="author-bio">
-                    {$author->getLocalizedBiography()|strip_unsafe_html}
-                  </div>
-                </div>
-              {/if}
             {/foreach}
-          </div>
         </div>
 
 
