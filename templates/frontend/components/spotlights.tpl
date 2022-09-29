@@ -1,13 +1,4 @@
 <div class="cmp_spotlights">
-	<ul class="list">
-		{foreach name="spotlights" from=$spotlights item=spotlight}
-			<li{if $smarty.foreach.spotlights.iteration == 1} class="current"{/if}>
-				<a href="#" data-spotlight="{$smarty.foreach.spotlights.iteration}">
-					{$spotlight->getLocalizedTitle()|escape}
-				</a>
-			</li>
-		{/foreach}
-	</ul>
 
 	<ul class="spotlights">
 		{foreach name="spotlights" from=$spotlights item=spotlight}
