@@ -6,7 +6,7 @@
   Av. 12 de Abril y Av. Loja / (593-7) 405 1000 / Cuenca - Ecuador
       </h5>
       <h5>
-      © 2022 UCuenca / URPC
+      © 2022 UCuenca Press
     </h5>
     </div>
   </div>

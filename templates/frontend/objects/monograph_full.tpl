@@ -2,7 +2,7 @@
 
     {* Olitas *}
     <div class="book-olitas">
-      <img src="http://localhost:8000/public/presses/1/olitas.png" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/olitas.png" alt="">
     </div>
 
     <div class="book-presentation-container">
@@ -59,7 +59,7 @@
 
     <hr class="book-separator">
 
-      <div class="book-secondary-container" v-scope="{ infoType: 'info' }" >
+      <div class="book-secondary-container" v-scope="{ infoType: 'praise' }" >
         <div class="book-secondary-picker" >
           <button 
           :class="{ 'underlined': infoType === 'authors', 'faded': infoType !== 'authors' }"
@@ -68,16 +68,16 @@
             Autores
           </button>
           <button 
-          :class="{ 'underlined': infoType === 'info', 'faded': infoType !== 'info' }"
-          @click="{ infoType = 'info'}"
-          >
-            Info
-          </button>
-          <button 
           :class="{ 'underlined': infoType === 'praise', 'faded': infoType !== 'praise' }"
           @click="{ infoType = 'praise'}"
           >
             Capítulos
+          </button>
+          <button 
+          :class="{ 'underlined': infoType === 'info', 'faded': infoType !== 'info' }"
+          @click="{ infoType = 'info'}"
+          >
+            Info
           </button>
       </div>
         <div class="book-authors"
@@ -217,7 +217,7 @@
         <div class="book-praise"
         v-bind="{ 'shown': infoType === 'praise', 'hidden': infoType !== 'praise' }"
         >
-{if $chapters|@count}
+      {if $chapters|@count}
 				<div class="item chapters">
 					<h2 class="pkp_screen_reader">
 						Tabla de Contenidos

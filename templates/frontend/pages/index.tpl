@@ -8,7 +8,7 @@
 	{/if}
 
     <div class="book-olitas">
-      <img src="http://localhost:8000/public/presses/1/olitas.png" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/olitas.png" alt="">
     </div>
 	{* Spotlights *}
 	{if !empty($spotlights)}
