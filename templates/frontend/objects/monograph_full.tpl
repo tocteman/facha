@@ -2,7 +2,7 @@
 
     {* Olitas *}
     <div class="book-olitas">
-      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/olitas.png" alt="">
+      <img src="http://localhost:8000/public/presses/1/olitas.png" alt="">
     </div>
 
     <div class="book-presentation-container">
@@ -21,8 +21,9 @@
         {if $series}
           <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
               {$series->getLocalizedFullTitle()|escape}
-							</a>
+          </a>
         {/if}
+
           <div class="book-publication-date">
           <span>·{$firstPublication->getData('datePublished')|date_format:"%Y"}·</span>
           </div>
@@ -59,7 +60,7 @@
 
     <hr class="book-separator">
 
-      <div class="book-secondary-container" v-scope="{ infoType: 'praise' }" >
+      <div class="book-secondary-container" v-scope="{ infoType: 'info' }" >
         <div class="book-secondary-picker" >
           <button 
           :class="{ 'underlined': infoType === 'authors', 'faded': infoType !== 'authors' }"
@@ -68,25 +69,25 @@
             Autores
           </button>
           <button 
-          :class="{ 'underlined': infoType === 'praise', 'faded': infoType !== 'praise' }"
-          @click="{ infoType = 'praise'}"
-          >
-            Capítulos
-          </button>
-          <button 
           :class="{ 'underlined': infoType === 'info', 'faded': infoType !== 'info' }"
           @click="{ infoType = 'info'}"
           >
             Info
+          </button>
+          <button 
+          :class="{ 'underlined': infoType === 'praise', 'faded': infoType !== 'praise' }"
+          @click="{ infoType = 'praise'}"
+          >
+            Capítulos
           </button>
       </div>
         <div class="book-authors"
         v-bind="{ 'shown': infoType === 'authors', 'hidden': infoType !== 'authors' }"
         >
             {foreach from=$publication->getData('authors') item=author}
-              <h2>
+              <h4>
                 {$author->getFullName()|escape}
-              </h2>
+              </h4>
             {/foreach}
         </div>
 
@@ -123,10 +124,10 @@
 
 							{* Only add the format-specific heading if multiple publication formats exist *}
 							{if count($publicationFormats) > 1}
-								<h2 class="pkp_screen_reader">
+								<h4 class="pkp_screen_reader">
 									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
-								</h2>
+								</h4>
 
 								<div class="sub_item item_heading format">
 									<div class="label">
@@ -134,51 +135,37 @@
 									</div>
 								</div>
 							{else}
-								<h2 class="pkp_screen_reader">
+								<h4 class="pkp_screen_reader">
 									{translate key="monograph.miscellaneousDetails"}
-								</h2>
+								</h4>
 							{/if}
+
+
+              {if $publicationFormat->getFrontMatter()}
+								<div class="sub_item item_heading format book-info-publication-date">
+									<p>
+										{$publicationFormat->getFrontMatter()|escape} páginas
+                  </p>
+								</div>
+                {/if}
+
+              <p class="book-info-publication-date">{$firstPublication->getData('datePublished')|date_format:"%b %Y"}</p>
 
 
 							{* DOI's and other identification codes *}
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
-										<h3 class="label">
+										<h4 class="label">
 											{$identificationCode->getNameForONIXCode()|escape}
-										</h3>
-										<div class="value">
+										</h4>
+                    <p>
 											{$identificationCode->getValue()|escape}
-										</div>
+                    </p>
 									</div>
 								{/foreach}
 							{/if}
 
-							{* Dates of publication *}
-							{if $publicationDates}
-								{foreach from=$publicationDates item=publicationDate}
-									<div class="sub_item date">
-										<h3 class="label">
-											{$publicationDate->getNameForONIXCode()|escape}
-										</h3>
-										<div class="value">
-											{assign var=dates value=$publicationDate->getReadableDates()}
-											{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
-											{if $publicationDate->isFreeText() || $dates|@count == 1}
-												{$dates[0]|escape}
-											{else}
-												{* @todo the &mdash; ought to be translateable *}
-												{$dates[0]|escape}&mdash;{$dates[1]|escape}
-											{/if}
-											{if $publicationDate->isHijriCalendar()}
-												<div class="hijri">
-													{translate key="common.dateHijri"}
-												</div>
-											{/if}
-										</div>
-									</div>
-								{/foreach}
-							{/if}
 
 							{* PubIDs *}
 							{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -186,9 +173,9 @@
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
 								{if $storedPubId != ''}
 									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-										<h2 class="label">
+										<h4 class="label">
 											{$pubIdType}
-										</h2>
+										</h4>
 										<div class="value">
 											{$storedPubId|escape}
 										</div>
@@ -199,9 +186,9 @@
 							{* Physical dimensions *}
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
-									<h2 class="label">
+									<h4 class="label">
 										{translate key="monograph.publicationFormat.productDimensions"}
-									</h2>
+									</h4>
 									<div class="value">
 										{$publicationFormat->getDimensions()|escape}
 									</div>
@@ -212,16 +199,49 @@
 				{/foreach}
 			{/if}
 
+			{* Categories *}
+			{if $categories}
+				<div class="item categories">
+					<h4 >
+						{translate key="catalog.categories"}
+					</h4>
+						<ul>
+							{foreach from=$categories item="category"}
+								<li>
+									<a href="{url op="category" path=$category->getPath()}">
+										{$category->getLocalizedTitle()|strip_unsafe_html}
+									</a>
+								</li>
+							{/foreach}
+						</ul>
+				</div>
+			{/if}
+
+
+			{* Keywords *}
+			{if !empty($publication->getLocalizedData('keywords'))}
+			<div class="item keywords">
+				<h4 class="label">
+					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+					{translate key="semicolon" label=$translatedKeywords}
+				</h4>
+          <div class="book-keywords">
+            {foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
+            <div>
+              {$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
+            </div>
+					{/foreach}
+          </div>
+			</div>
+			{/if}
+
 
           </div>
         <div class="book-praise"
         v-bind="{ 'shown': infoType === 'praise', 'hidden': infoType !== 'praise' }"
         >
-      {if $chapters|@count}
+{if $chapters|@count}
 				<div class="item chapters">
-					<h2 class="pkp_screen_reader">
-						Tabla de Contenidos
-					</h2>
 					<ul>
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
