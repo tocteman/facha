@@ -23,6 +23,13 @@
 	{if !empty($newReleases)}
   <div class="new-releases-container">
 		{include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
+    <div class="catalog-index-link">
+      <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
+      <button class="main-btn">
+      Ver Todos
+      </button>
+      </a>
+    </div>
   </div>
 	{/if}
 
@@ -55,6 +62,7 @@
 			</div><!-- .more -->
 		</div>
 	{/if}
+
 
 	{* Additional Homepage Content *}
 	{if $additionalHomeContent}
