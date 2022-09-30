@@ -8,9 +8,11 @@
 {/if}
 
 {* Display the download link *}
-<a href="{$downloadUrl}" class="cmp_download_link">
   <button class="main-btn">
-    Descargar
+    <a href="{$downloadUrl}" class="cmp_download_link">
+    <h3>
+      Descargar
+    </h3>
+    </a>
   </button>
-</a>
 
