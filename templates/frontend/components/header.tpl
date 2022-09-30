@@ -39,18 +39,18 @@
 
         <div>
           <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
-          <h3 class="topbar-item" style="line-height:0;">
+          <div class="topbar-item">
             Acerca de
-          </h3>
+          </div>
           </a>
         </div>
 
 
         <div>
           <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
-          <h3 class="topbar-item" style="line-height:0;">
+          <div class="topbar-item">
             Catálogo
-          </h3>
+          </div>
           </a>
         </div>
 
