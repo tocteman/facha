@@ -2,7 +2,7 @@
 
     {* Olitas *}
     <div class="book-olitas">
-      <img src="http://localhost:8000/public/presses/1/olitas.png" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/olitas.png" alt="">
     </div>
 
     <div class="book-presentation-container">
@@ -28,7 +28,7 @@
           <span>·{$firstPublication->getData('datePublished')|date_format:"%Y"}·</span>
           </div>
           <h1 class="title">
-            {$publication->getLocalizedTitle()|escape|truncate:40}
+            {$publication->getLocalizedTitle()|escape}
           </h1>
           <h2 class="subtitle">
             {$publication->getLocalizedData('subtitle')|escape}

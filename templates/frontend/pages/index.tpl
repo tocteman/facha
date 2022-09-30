@@ -18,20 +18,46 @@
 	{/if}
 
 
+	{* Featured *}
+  <div class="featured-releases-container">
+	{if !empty($featuredMonographs)}
+   <h1>Destacados</h1>
+ <div class="catalog-index-link">
+        <button class="main-btn">
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
+            <h3>
+              Catálogo Completo
+            </h3>
+          </a>
+        </button>
+      </div>
+    		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
+
+	{/if}
+  </div>
 
 	{* New releases *}
 	{if !empty($newReleases)}
-  <div class="new-releases-container">
-		{include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
-    <div class="catalog-index-link">
-      <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
-      <button class="main-btn">
-      Ver Todos
-      </button>
-      </a>
+  <div class="new-releases-outer-container">
+    <div class="new-releases-inner-container">
+      <h1>Nuevos Lanzamientos</h1>
+      {include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
+      <div class="catalog-index-link">
+        <button class="main-btn">
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
+            <h3>
+              Catálogo Completo
+            </h3>
+          </a>
+        </button>
+      </div>
     </div>
   </div>
 	{/if}
+
+  <div>
+		{include file="frontend/components/resources.tpl"}
+  </div>
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}

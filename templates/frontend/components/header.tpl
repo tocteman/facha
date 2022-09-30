@@ -38,11 +38,20 @@
 				</div>
 
         <div>
-        <a href="/mpi/about">
-        <h3 class="topbar-item" style="line-height:0;">
-        Acerca de
-        </h3>
-        </a>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+          <h3 class="topbar-item" style="line-height:0;">
+            Acerca de
+          </h3>
+          </a>
+        </div>
+
+
+        <div>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
+          <h3 class="topbar-item" style="line-height:0;">
+            Catálogo
+          </h3>
+          </a>
         </div>
 
 				{capture assign="primaryMenu"}
