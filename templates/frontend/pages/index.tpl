@@ -59,37 +59,6 @@
 		{include file="frontend/components/resources.tpl"}
   </div>
 
-	{* Announcements *}
-	{if $numAnnouncementsHomepage && $announcements|@count}
-		<div id="homepageAnnouncements" class="cmp_announcements highlight_first">
-			<h2>
-				{translate key="announcement.announcements"}
-			</h2>
-			{foreach name=announcements from=$announcements item=announcement}
-				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
-					{break}
-				{/if}
-				{if $smarty.foreach.announcements.iteration == 1}
-					{include file="frontend/objects/announcement_summary.tpl" heading="h3"}
-					<div class="more">
-				{else}
-					<article class="obj_announcement_summary">
-						<h4>
-							<a href="{url router=PKPApplication::ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-								{$announcement->getLocalizedTitle()|escape}
-							</a>
-						</h4>
-						<div class="date">
-							{$announcement->getDatePosted()|date_format:$dateFormatShort}
-						</div>
-					</article>
-				{/if}
-			{/foreach}
-			</div><!-- .more -->
-		</div>
-	{/if}
-
-
 	{* Additional Homepage Content *}
 	{if $additionalHomeContent}
 		<div class="additional_content">

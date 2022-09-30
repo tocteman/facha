@@ -50,12 +50,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$prevPage}{/capture}
+			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()}{/capture}
+			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$series->getPath()}{/capture}
 		{/if}
 		{if $nextPage}
-			{capture assign=nextUrl}{url router=PKPApplication::ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$nextPage}{/capture}
+			{capture assign=nextUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$series->getPath()|to_array:$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"
