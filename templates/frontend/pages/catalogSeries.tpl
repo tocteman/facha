@@ -28,6 +28,11 @@
 	</div>
 
   </div>
+    
+
+	{include file="frontend/components/catalogFilters.tpl"}
+
+
     <hr class="book-separator" style="margin-bottom:4rem;">
 
 

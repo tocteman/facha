@@ -6,10 +6,7 @@
 	{include file="frontend/components/breadcrumbs_catalog.tpl" type="category" parent=$parentCategory currentTitle=$category->getLocalizedTitle()}
 	<h1>{$category->getLocalizedTitle()|escape}</h1>
 
-	{* Count of monographs in this category *}
-	<div class="monograph_count">
-		{translate key="catalog.browseTitles" numTitles=$total}
-	</div>
+
 
 	{* Image and description *}
 	{assign var="image" value=$category->getImage()}
@@ -41,6 +38,13 @@
 		</ul>
 	</nav>
 	{/if}
+
+	{include file="frontend/components/catalogFilters.tpl"}
+
+	{* Count of monographs in this category *}
+	<div class="monograph_count">
+		{translate key="catalog.browseTitles" numTitles=$total}
+	</div>
 
 	{* No published titles in this category *}
 	{if empty($publishedSubmissions)}
