@@ -1,6 +1,6 @@
   <div class="resources-container">
     <div class="resources-img">
-      <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/typesets.jpg" alt="">
+      <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/laspatentes.jpg" alt="">
     </div>
     <div class="resources-written-presentation">
       <div class="resources-title">
@@ -11,29 +11,41 @@
 
         <li>
           <button class="main-btn">
-            <a href="">
-              <h3>Sobre UCuenca Press</h3>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+              <div class="resource-presentation-heading">
+              Sobre UCuenca Press
+              </div>
             </a>
           </button>
-          <p>Nos hemos reestablecido como sello editorial.</p>
+          <div class="resource-presentation-content">
+            Nos hemos reestablecido como sello editorial.
+          </div>
         </li>
 
         <li>
           <button class="main-btn">
-            <a href="">
-              <h3>Para autores</h3>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
+              <div class="resource-presentation-heading">
+              Para autores
+              </div>
             </a>
           </button>
-          <p>Consideraciones antes de enviar el manuscrito.</p>
+          <div class="resource-presentation-content">
+              Consideraciones antes de enviar el manuscrito.
+          </div>
         </li>
 
         <li>
           <button class="main-btn">
-            <a href="">
-              <h3>Primer manuscrito</h3>
-            </a>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+            <div class="resource-presentation-heading">
+            Primer manuscrito
+            </div>
+          </a>
           </button>
-          <p>Consideraciones antes de enviar el manuscrito.</p>
+          <div class="resource-presentation-content">
+            Consideraciones antes de enviar el manuscrito.
+          </div>
         </li>
 
       </ul>

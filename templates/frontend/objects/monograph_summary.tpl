@@ -12,7 +12,7 @@
 			<a {if $press}href="{url press=$press->getPath() page="catalog" op="book" path=$monograph->getBestId()}"{else}href="{url page="catalog" op="book" path=$monograph->getBestId()}"{/if}>
 
       <div class="summary-title">
-				{$monograph->getLocalizedTitle()|escape|truncate:40:"..."}
+				{$monograph->getLocalizedTitle()|escape|truncate:38:"..."}
       </div>
       <div class="summary-subtitle">
 				{$monograph->getCurrentPublication()->getLocalizedData('subtitle')|escape}

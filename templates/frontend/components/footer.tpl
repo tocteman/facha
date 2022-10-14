@@ -2,12 +2,51 @@
 
   <div class="footer-area">
     <div class="footer-container">
-      <h5>
-  Av. 12 de Abril y Av. Loja / (593-7) 405 1000 / Cuenca - Ecuador
+      <div class="footer-resources">
+          <h3>
+          La Editorial
+          </h3>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" }">
+          <h5>
+          Acerca De
+          </h5>
+          </a>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
+          <h5>
+            Hoja de Ruta
+          </h5>
+          </a>
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+            <h5>
+            Contacto
+            </h5>
+          </a>
+        
+      </div>
+      <div class="footer-info">
+        <h5>
+        Av. 12 de Abril y Av. Loja
+        </h5>
+        <h5>
+        (593-7) 405 1000 
+        </h5>
+        <h5>
+        Cuenca - Ecuador
+        </h5>
+        
+      </div>
+      <div class="footer-last">
+        <div class="footer-logo">
+          <a href="https://www.ucuenca.edu.ec" target="_blank">
+              <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/ucuenca_logo.svg" alt="">
+          </a>
+        </div>
+        <h5>
+        <strong>
+        © 2022 UCuencaPress
+        </strong>
       </h5>
-      <h5>
-      © 2022 UCuencaPress
-    </h5>
+        </div>
     </div>
   </div>
 
