@@ -2,13 +2,13 @@
     <div class="filter-area-picker">
       <button 
         :class="{ 'underlined': open === 'categories', 'faded': open !== 'categories' }"
-        @click="{ open = 'categories'}"
+        @click="{ open === 'categories' ? open = 'none' : open = 'categories'}"
       >
         Categorías
       </button>
       <button
         :class="{ 'underlined': open === 'series', 'faded': open !== 'series' }"
-        @click="{ open = 'series'}"
+        @click="{ open === 'series' ? open = 'none' : open = 'series'}"
       >
       Series
       </button>
