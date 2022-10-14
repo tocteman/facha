@@ -66,7 +66,7 @@
 							{$primaryMenu}
 
 							{* Search form *}
-							{if $currentContext && $requestedPage !== 'search'}
+							{if $currentContext}
 								<div class="">
 									<a href="{url page="search"}" class="topbar-icon">
                   <svg style="width:20px; height:20px" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -91,3 +91,4 @@
 		<div class="pkp_structure_content{if $hasSidebar} has_sidebar{/if}">
 			<div class="pkp_structure_main" role="main">
 				<a id="pkp_content_main"></a>
+

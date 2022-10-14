@@ -1,4 +1,4 @@
-<div class="item authors" style="padding-top:1rem;">
+<div class="item authors written-presentation-authors">
 
   {* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
@@ -8,7 +8,7 @@
 
 
 	{* Show short author lists on multiple lines *}
-	{if $authors|@count < 5}
+	{if $authors|@count < 10}
 		{foreach from=$authors item=author}
 			<div class="sub_item">
 				<div class="author-name">

@@ -5,7 +5,6 @@
     <div class="resources-written-presentation">
       <div class="resources-title">
         <h1>Recursos</h1>
-        <p>Ven con nosotros a caminar.</p>
       </div>
       <ul>
 
@@ -26,7 +25,7 @@
           <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
               <div class="resource-presentation-heading">
-              Para autores
+              Hoja de Ruta
               </div>
             </a>
           </button>
@@ -39,13 +38,10 @@
           <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
             <div class="resource-presentation-heading">
-            Primer manuscrito
+            Contacto
             </div>
           </a>
           </button>
-          <div class="resource-presentation-content">
-            Consideraciones antes de enviar el manuscrito.
-          </div>
         </li>
 
       </ul>
