@@ -1,6 +1,6 @@
 {include file="frontend/components/header.tpl"}
 
-<div class="page homepage">
+<div class="homepage">
 
 	{* Homepage Image *}
 	{if !$activeTheme->getOption('useHomepageImageAsHeader') && $homepageImage}

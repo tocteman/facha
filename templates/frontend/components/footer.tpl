@@ -42,9 +42,7 @@
           </a>
         </div>
         <h5>
-        <strong>
         © 2022 UCuencaPress
-        </strong>
       </h5>
         </div>
     </div>

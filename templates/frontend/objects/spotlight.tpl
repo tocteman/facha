@@ -21,11 +21,13 @@
         {$description|strip_unsafe_html}
       </div>
       {/if}
-      <a class="transparent" href="{$targetUrl}" title="{translate|escape key="common.readMoreWithTitle" title=$spotlight->getLocalizedTitle()}">
       <button class="main-btn transparent">
+      <a class="transparent" href="{$targetUrl}" title="{translate|escape key="common.readMoreWithTitle" title=$spotlight->getLocalizedTitle()}">
+        <h3>
         Leer más
-      </button>
+        </h3>
       </a>
+      </button>
     </div>
 	</div>
 </div>
