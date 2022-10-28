@@ -77,9 +77,8 @@
             Capítulos
           </button>
         </div>
-        <div class="info"
-        v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }"
-        >
+        <div v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }" >
+        <div class="info">
           <div class="book-info-authors">
             <h4>Autores</h4>
               {foreach from=$publication->getData('authors') item=author}
@@ -89,10 +88,9 @@
               {/foreach}
           </div>
 
-
-      <div>
+          <div>
       	{* Publication formats *}
-			{if count($publicationFormats)}
+        {if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
 
@@ -221,12 +219,11 @@
               {$series->getLocalizedFullTitle()|escape}
           </a>
           {/if}
-
-
-
         </div>
-             
+        </div>
       </div>
+
+
 		        <div class="book-praise"
         v-bind="{ 'shown': infoType === 'praise', 'hidden': infoType !== 'praise' }"
         >
