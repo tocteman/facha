@@ -76,7 +76,7 @@
           >
             Capítulos
           </button>
-      </div>
+        </div>
         <div class="info"
         v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }"
         >
