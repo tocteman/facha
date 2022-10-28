@@ -2,7 +2,7 @@
 
     {* Olitas *}
     <div class="book-olitas">
-      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/olitas.png" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/separador-15.svg" alt="">
     </div>
 
     <div class="book-presentation-container">
@@ -34,9 +34,10 @@
             {$publication->getLocalizedData('subtitle')|escape}
           </h2>
 
-          <h3 class>
-			{include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
+          <h3 class="written-presentation-authors">
+            {include file="frontend/components/authors.tpl" authors=$publication->getData('authors')}
           </h3>
+
           <div class="book-abstract">
               {$publication->getLocalizedData('abstract')|strip_unsafe_html}
 
@@ -62,17 +63,12 @@
 
       <div class="book-secondary-container" v-scope="{ infoType: 'info' }" >
         <div class="book-secondary-picker" >
-          <button 
-          :class="{ 'underlined': infoType === 'authors', 'faded': infoType !== 'authors' }"
-          @click="{ infoType = 'authors'}"
-          >
-            Autores
           </button>
           <button 
           :class="{ 'underlined': infoType === 'info', 'faded': infoType !== 'info' }"
           @click="{ infoType = 'info'}"
           >
-            Info
+            Información
           </button>
           <button 
           :class="{ 'underlined': infoType === 'praise', 'faded': infoType !== 'praise' }"
@@ -81,23 +77,21 @@
             Capítulos
           </button>
       </div>
-        <div class="book-authors"
-        v-bind="{ 'shown': infoType === 'authors', 'hidden': infoType !== 'authors' }"
-        >
-            {foreach from=$publication->getData('authors') item=author}
-              <h4>
-                {$author->getFullName()|escape}
-              </h4>
-            {/foreach}
-        </div>
-
-
-        <div class="book-info"
+        <div class="info"
         v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }"
         >
+          <div class="book-info-authors">
+            <h4>Autores</h4>
+              {foreach from=$publication->getData('authors') item=author}
+                <p>
+                  {$author->getFullName()|escape}
+                </p>
+              {/foreach}
+          </div>
 
 
-			{* Publication formats *}
+      <div>
+      	{* Publication formats *}
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
 					{if $publicationFormat->getIsApproved()}
@@ -156,11 +150,8 @@
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
 									<div class="sub_item identification_code">
-										<h4 class="label">
-											{$identificationCode->getNameForONIXCode()|escape}
-										</h4>
                     <p>
-											{$identificationCode->getValue()|escape}
+                      <strong>ISBN:</strong>&nbsp;{$identificationCode->getValue()|escape}
                     </p>
 									</div>
 								{/foreach}
@@ -199,48 +190,47 @@
 				{/foreach}
 			{/if}
 
-			{* Categories *}
-			{if $categories}
-				<div class="item categories">
-					<h4 >
-						{translate key="catalog.categories"}
-					</h4>
-						<ul>
-							{foreach from=$categories item="category"}
-								<li>
-									<a href="{url op="category" path=$category->getPath()}">
-										{$category->getLocalizedTitle()|strip_unsafe_html}
-									</a>
-								</li>
-							{/foreach}
-						</ul>
-				</div>
-			{/if}
 
+        </div>
 
-			{* Keywords *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-			<div class="item keywords">
-				<h4 class="label">
-					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h4>
-          <div class="book-keywords">
-            {foreach name="keywords" from=$publication->getLocalizedData('keywords') item=keyword}
-            <div>
-              {$keyword|escape}{if !$smarty.foreach.keywords.last}, {/if}
+        <div>
+        {* Categories *}
+          {if $categories}
+            <div class="item categories">
+              <h4 >
+                {translate key="catalog.categories"}
+              </h4>
+                <ul>
+                  {foreach from=$categories item="category"}
+                    <li>
+                      <a href="{url op="category" path=$category->getPath()}">
+                        {$category->getLocalizedTitle()|strip_unsafe_html}
+                      </a>
+                    </li>
+                  {/foreach}
+                </ul>
             </div>
-					{/foreach}
-          </div>
-			</div>
-			{/if}
+          {/if}
+
+        {* Series *}
+          {if $series}
+              <h4 >
+                Serie
+              </h4>
+          <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
+              {$series->getLocalizedFullTitle()|escape}
+          </a>
+          {/if}
 
 
-          </div>
-        <div class="book-praise"
+
+        </div>
+             
+      </div>
+		        <div class="book-praise"
         v-bind="{ 'shown': infoType === 'praise', 'hidden': infoType !== 'praise' }"
         >
-{if $chapters|@count}
+    {if $chapters|@count}
 				<div class="item chapters">
 					<ul>
 						{foreach from=$chapters item=chapter}

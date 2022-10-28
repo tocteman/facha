@@ -13,7 +13,7 @@
       <h5 class="spotlight-latest-release">
         Último Lanzamiento
       </h5>
-      <h1 class="title" style="line-height:115%;">
+      <h1 class="title">
         {$spotlight->getLocalizedTitle()|escape}
       </h1>
       {if $description}
