@@ -18,7 +18,9 @@
 
     <div class="first-row">
     <div class="editorial-center-header">
-    Centro Editorial
+    <a href="{$homeUrl}" class="logo">
+      Centro Editorial
+    </a>
     </div>
       <div class="pkp_site_name_wrapper">
 					<div class="pkp_site_name">
@@ -57,14 +59,14 @@
           </div>
           </a>
 
-          <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
           <div class="topbar-item">
             Contacto
           </div>
           </a>
 
 
-          <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
+          <a href="{url router=$smarty.const.ROUTE_PAGE page="login"}">
           <div class="topbar-item">
             Ingresar
           </div>
