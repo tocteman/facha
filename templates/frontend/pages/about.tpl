@@ -3,6 +3,9 @@
 <div class="page page_about">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutContext"}
 
+  <div class="about-img">
+    <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/maquina.jpg" alt="">
+  </div>
 <div class="about_content">
 	<h1>
 		{translate key="about.aboutContext"}

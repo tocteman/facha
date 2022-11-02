@@ -2,96 +2,104 @@
 
 <div class="page page_contact">
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.contact"}
-	<h1>
-		{translate key="about.contact"}
-	</h1>
+  <div class="contact-container">
 
-	{* Contact section *}
-	<div class="contact_section">
+  <div class="contact-img">
+    <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/tarjetas.jpg" alt="">
+  </div>
+  <div class="contact-copy">
+    <h1>
+      {translate key="about.contact"}
+    </h1>
 
-		{if $mailingAddress}
-			<div class="address">
-				{$mailingAddress|nl2br|strip_unsafe_html}
-			</div>
-		{/if}
+    {* Contact section *}
+    <div class="contact_section">
 
-		{* Primary contact *}
-		{if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
-			<div class="contact primary">
-				<h3>
-					{translate key="about.contact.principalContact"}
-				</h3>
+      {if $mailingAddress}
+        <div class="address">
+          {$mailingAddress|nl2br|strip_unsafe_html}
+        </div>
+      {/if}
 
-				{if $contactName}
-				<div class="name">
-					{$contactName|escape}
-				</div>
-				{/if}
+      {* Primary contact *}
+      {if $contactTitle || $contactName || $contactAffiliation || $contactPhone || $contactEmail}
+        <div class="contact primary">
+          <h3>
+            {translate key="about.contact.principalContact"}
+          </h3>
 
-				{if $contactTitle}
-				<div class="title">
-					{$contactTitle|escape}
-				</div>
-				{/if}
+          {if $contactName}
+          <div class="name">
+            {$contactName|escape}
+          </div>
+          {/if}
 
-				{if $contactAffiliation}
-				<div class="affiliation">
-					{$contactAffiliation|strip_unsafe_html}
-				</div>
-				{/if}
+          {if $contactTitle}
+          <div class="title">
+            {$contactTitle|escape}
+          </div>
+          {/if}
 
-				{if $contactPhone}
-				<div class="phone">
-					<span class="label">
-						{translate key="about.contact.phone"}
-					</span>
-					<span class="value">
-						{$contactPhone|escape}
-					</span>
-				</div>
-				{/if}
+          {if $contactAffiliation}
+          <div class="affiliation">
+            {$contactAffiliation|strip_unsafe_html}
+          </div>
+          {/if}
 
-				{if $contactEmail}
-				<div class="email">
-					{mailto address=$contactEmail encode='javascript'}
-				</div>
-				{/if}
-			</div>
-		{/if}
+          {if $contactPhone}
+          <div class="phone">
+            <span class="label">
+              {translate key="about.contact.phone"}
+            </span>
+            <span class="value">
+              {$contactPhone|escape}
+            </span>
+          </div>
+          {/if}
 
-		{* Technical contact *}
-		{if $supportName || $supportPhone || $supportEmail}
-			<div class="contact support">
-				<h3>
-					{translate key="about.contact.supportContact"}
-				</h3>
+          {if $contactEmail}
+          <div class="email">
+            {mailto address=$contactEmail encode='javascript'}
+          </div>
+          {/if}
+        </div>
+      {/if}
 
-				{if $supportName}
-				<div class="name">
-					{$supportName|escape}
-				</div>
-				{/if}
+      {* Technical contact *}
+      {if $supportName || $supportPhone || $supportEmail}
+        <div class="contact support">
+          <h3>
+            {translate key="about.contact.supportContact"}
+          </h3>
 
-				{if $supportPhone}
-				<div class="phone">
-					<span class="label">
-						{translate key="about.contact.phone"}
-					</span>
-					<span class="value">
-						{$supportPhone|escape}
-					</span>
-				</div>
-				{/if}
+          {if $supportName}
+          <div class="name">
+            {$supportName|escape}
+          </div>
+          {/if}
 
-				{if $supportEmail}
-				<div class="email">
-					{mailto address=$supportEmail encode='javascript'}
-				</div>
-				{/if}
-			</div>
-		{/if}
-	</div>
+          {if $supportPhone}
+          <div class="phone">
+            <span class="label">
+              {translate key="about.contact.phone"}
+            </span>
+            <span class="value">
+              {$supportPhone|escape}
+            </span>
+          </div>
+          {/if}
 
+          {if $supportEmail}
+          <div class="email">
+            {mailto address=$supportEmail encode='javascript'}
+          </div>
+          {/if}
+        </div>
+      {/if}
+    </div>
+  </div><!-- .texto -->
+
+</div>
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
