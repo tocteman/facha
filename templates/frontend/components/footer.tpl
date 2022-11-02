@@ -28,10 +28,10 @@
       <div class="footer-info">
         <div class="footer-info-inner">
           <h5>
-            Av. 12 de Abril y Av. Loja
+            Honorato Loyola y Agustín Cueva
           </h5>
           <h5>
-            (593-7) 405 1000 
+            (593-7) 405 1000 +1199
           </h5>
           <h5>
             Cuenca - Ecuador
