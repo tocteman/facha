@@ -21,7 +21,7 @@
 	{* Featured *}
   <div class="featured-releases-container">
 	{if !empty($featuredMonographs)}
-   <h1>Destacados</h1>
+   <h1>Nuevos Lanzamientos</h1>
    <div class="catalog-index-link">
         <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
@@ -40,7 +40,7 @@
 	{if !empty($newReleases)}
   <div class="new-releases-outer-container">
     <div class="new-releases-inner-container">
-      <h1>Nuevos Lanzamientos</h1>
+      <h1>Destacados</h1>
       <div class="catalog-index-link">
         <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
