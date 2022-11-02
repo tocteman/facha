@@ -77,151 +77,151 @@
             Capítulos
           </button>
         </div>
+
         <div v-bind="{ 'shown': infoType === 'info', 'hidden': infoType !== 'info' }" >
-        <div class="info">
-          <div class="book-info-authors">
-            <h4>Autores</h4>
-              {foreach from=$publication->getData('authors') item=author}
-                <p>
-                  {$author->getFullName()|escape}
-                </p>
+        
+
+      <div class="info book-info">
+
+
+
+      <div>
+      {* Publication formats *}
+        <div class="info-component info-component-second">
+          <div class="info-component-inner">
+          {if count($publicationFormats)}
+          {foreach from=$publicationFormats item="publicationFormat"}
+            {if $publicationFormat->getIsApproved()}
+
+              {assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
+              {assign var=identificationCodes value=$identificationCodes->toArray()}
+              {assign var=publicationDates value=$publicationFormat->getPublicationDates()}
+              {assign var=publicationDates value=$publicationDates->toArray()}
+              {assign var=hasPubId value=false}
+              {foreach from=$pubIdPlugins item=pubIdPlugin}
+                {assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
+                {if $publicationFormat->getStoredPubId($pubIdType)}
+                  {assign var=hasPubId value=true}
+                  {break}
+                {/if}
               {/foreach}
-          </div>
 
-          <div>
-      	{* Publication formats *}
-        {if count($publicationFormats)}
-				{foreach from=$publicationFormats item="publicationFormat"}
-					{if $publicationFormat->getIsApproved()}
+              {* Skip if we don't have any information to print about this pub format *}
+              {if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
+                {continue}
+              {/if}
 
-						{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
-						{assign var=identificationCodes value=$identificationCodes->toArray()}
-						{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
-						{assign var=publicationDates value=$publicationDates->toArray()}
-						{assign var=hasPubId value=false}
-						{foreach from=$pubIdPlugins item=pubIdPlugin}
-							{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
-							{if $publicationFormat->getStoredPubId($pubIdType)}
-								{assign var=hasPubId value=true}
-								{break}
-							{/if}
-						{/foreach}
+              <div class="item publication_format technical_details_title">
+                <h4> Ficha Técnica </h4>
+                {if $publicationFormat->getFrontMatter()}
+                    <p>
+                      {$publicationFormat->getFrontMatter()|escape} páginas
+                    </p>
+                  {/if}
 
-						{* Skip if we don't have any information to print about this pub format *}
-						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
-							{continue}
-						{/if}
+                <p class="book-info-publication-date">
+                 Lanzamiento: {$firstPublication->getData('datePublished')|date_format:"%b %Y"}
+                </p>
 
-						<div class="item publication_format">
-
-							{* Only add the format-specific heading if multiple publication formats exist *}
-							{if count($publicationFormats) > 1}
-								<h4 class="pkp_screen_reader">
-									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
-									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
-								</h4>
-
-								<div class="sub_item item_heading format">
-									<div class="label">
-										{$publicationFormat->getLocalizedName()|escape}
-									</div>
-								</div>
-							{else}
-								<h4 class="pkp_screen_reader">
-									{translate key="monograph.miscellaneousDetails"}
-								</h4>
-							{/if}
-
-
-              {if $publicationFormat->getFrontMatter()}
-								<div class="sub_item item_heading format book-info-publication-date">
-									<p>
-										{$publicationFormat->getFrontMatter()|escape} páginas
-                  </p>
-								</div>
+                {* DOI's and other identification codes *}
+                {if $identificationCodes}
+                  {foreach from=$identificationCodes item=identificationCode}
+                      <p>
+                        ISBN: {$identificationCode->getValue()|escape}
+                      </p>
+                  {/foreach}
                 {/if}
 
-              <p class="book-info-publication-date">{$firstPublication->getData('datePublished')|date_format:"%b %Y"}</p>
 
+                {* PubIDs *}
+                {foreach from=$pubIdPlugins item=pubIdPlugin}
+                  {assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
+                  {assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
+                  {if $storedPubId != ''}
+                    <div class="sub_item pubid {$publicationFormat->getId()|escape}">
+                      <h4 class="label">
+                        {$pubIdType}
+                      </h4>
+                      <div class="value">
+                        {$storedPubId|escape}
+                      </div>
+                    </div>
+                  {/if}
+                {/foreach}
 
-							{* DOI's and other identification codes *}
-							{if $identificationCodes}
-								{foreach from=$identificationCodes item=identificationCode}
-									<div class="sub_item identification_code">
-                    <p>
-                      <strong>ISBN:</strong>&nbsp;{$identificationCode->getValue()|escape}
-                    </p>
-									</div>
-								{/foreach}
-							{/if}
-
-
-							{* PubIDs *}
-							{foreach from=$pubIdPlugins item=pubIdPlugin}
-								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
-								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
-								{if $storedPubId != ''}
-									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-										<h4 class="label">
-											{$pubIdType}
-										</h4>
-										<div class="value">
-											{$storedPubId|escape}
-										</div>
-									</div>
-								{/if}
-							{/foreach}
-
-							{* Physical dimensions *}
-							{if $publicationFormat->getPhysicalFormat()}
-								<div class="sub_item dimensions">
-									<h4 class="label">
-										{translate key="monograph.publicationFormat.productDimensions"}
-									</h4>
-									<div class="value">
-										{$publicationFormat->getDimensions()|escape}
-									</div>
-								</div>
-							{/if}
-						</div>
-					{/if}
-				{/foreach}
-			{/if}
-
-
-        </div>
-
-        <div>
-        {* Categories *}
-          {if $categories}
-            <div class="item categories">
-              <h4 >
-                {translate key="catalog.categories"}
-              </h4>
-                <ul>
-                  {foreach from=$categories item="category"}
-                    <li>
-                      <a href="{url op="category" path=$category->getPath()}">
-                        {$category->getLocalizedTitle()|strip_unsafe_html}
-                      </a>
-                    </li>
-                  {/foreach}
-                </ul>
-            </div>
-          {/if}
-
-        {* Series *}
-          {if $series}
-              <h4 >
-                Serie
-              </h4>
-          <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
-              {$series->getLocalizedFullTitle()|escape}
-          </a>
-          {/if}
-        </div>
+                {* Physical dimensions *}
+                {if $publicationFormat->getPhysicalFormat()}
+                  <div class="sub_item dimensions">
+                    <h4 class="label">
+                      {translate key="monograph.publicationFormat.productDimensions"}
+                    </h4>
+                    <div class="value">
+                      {$publicationFormat->getDimensions()|escape}
+                    </div>
+                  </div>
+                {/if}
+              </div>
+            {/if}
+          {/foreach}
+        {/if}
         </div>
       </div>
+
+
+        <div class="info-component info-component-third">
+          <div class="info-component-inner">
+            {* Categories *}
+            {if $categories}
+              <div class="item categories">
+                <h4 >
+                  {translate key="catalog.categories"}
+                </h4>
+                  <ul>
+                    {foreach from=$categories item="category"}
+                      <li>
+                        <a href="{url op="category" path=$category->getPath()}">
+                          {$category->getLocalizedTitle()|strip_unsafe_html}
+                        </a>
+                      </li>
+                    {/foreach}
+                  </ul>
+              </div>
+            {/if}
+
+          {* Series *}
+            {if $series}
+              <div class="item series">
+              <h4> Serie </h4>
+              <ul>
+                <li>
+                <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
+                {$series->getLocalizedFullTitle()|escape}
+              </a>
+                </li>
+              </ul>
+              </div>
+
+            {/if}
+
+            </div> <!-- inner container -->
+          </div> <!-- categories & series -->
+
+
+          {* Autores *}
+          <div class="book-info-authors info-component">
+            <div class="info-component-inner">
+            <h4>Autores</h4>
+            {foreach from=$publication->getData('authors') item=author}
+              <p>
+                {$author->getFullName()|escape}
+              </p>
+            {/foreach}
+          </div>
+        </div>
+
+        </div> <!-- info -->
+        </div> <!-- info -->
+      </div> <!-- v-bind container -->
 
 
 		        <div class="book-praise"
@@ -233,14 +233,14 @@
 						{foreach from=$chapters item=chapter}
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
-								<div class="chapter-title">
+								<h4 class="chapter-title">
 									{$chapter->getLocalizedTitle()|escape}
 									{if $chapter->getLocalizedSubtitle() != ''}
 										<div class="chapter-subtitle">
 											{$chapter->getLocalizedSubtitle()|escape}
 										</div>
 									{/if}
-								</div>
+								</h4>
                 <div>
 									{if $chapter->getLocalizedData('abstract') != ''}
 										<div class="chapter-subtitle">

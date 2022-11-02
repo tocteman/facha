@@ -3,7 +3,8 @@
   <div class="footer-area">
     <div class="footer-container">
       <div class="footer-resources">
-          <h3>
+        <div class="footer-resources-inner">
+         <h3>
           La Editorial
           </h3>
           <a href="{url router=$smarty.const.ROUTE_PAGE page="about" }">
@@ -21,30 +22,35 @@
             Contacto
             </h5>
           </a>
-        
+        </div>
       </div>
+
       <div class="footer-info">
-        <h5>
-        Av. 12 de Abril y Av. Loja
-        </h5>
-        <h5>
-        (593-7) 405 1000 
-        </h5>
-        <h5>
-        Cuenca - Ecuador
-        </h5>
-        
+        <div class="footer-info-inner">
+          <h5>
+            Av. 12 de Abril y Av. Loja
+          </h5>
+          <h5>
+            (593-7) 405 1000 
+          </h5>
+          <h5>
+            Cuenca - Ecuador
+          </h5>
+        </div>
       </div>
+
       <div class="footer-last">
-        <div class="footer-logo">
-          <a href="https://www.ucuenca.edu.ec" target="_blank">
-              <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/ucuenca_logo.svg" alt="">
-          </a>
-        </div>
-        <h5>
-        © 2022 UCuencaPress
-      </h5>
-        </div>
+        <div class="footer-last-inner">
+          <div class="footer-logo">
+            <a href="https://www.ucuenca.edu.ec" target="_blank">
+                <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/ucuenca_logo.svg" alt="">
+            </a>
+          </div>
+          <h5>
+          © 2022 UCuencaPress
+        </h5>
+      </div>
+      </div>
     </div>
   </div>
 
