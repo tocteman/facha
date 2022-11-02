@@ -76,17 +76,24 @@
 				</fieldset>
 			{/if}
 
-			<div class="buttons">
-				<button class="submit" type="submit">
-					{translate key="user.login"}
+			<div class="login-buttons">
+				<button class="main-btn" type="submit">
+          <h3>
+            {translate key="user.login"}
+          </h3>
 				</button>
 
 				{if !$disableUserReg}
 					{capture assign=registerUrl}{url page="user" op="register" source=$source}{/capture}
+          <button class="main-btn registration-btn">
 					<a href="{$registerUrl}" class="register">
+            <h3>
 						{translate key="user.login.registerNewAccount"}
+            </h3>
 					</a>
+          </button>
 				{/if}
+
 			</div>
 		</fieldset>
 	</form>
