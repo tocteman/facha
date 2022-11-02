@@ -1,6 +1,6 @@
   <div class="resources-container">
     <div class="resources-img">
-      <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/laspatentes.jpg" alt="">
+      <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/cuadernito.jpg" alt="">
     </div>
     <div class="resources-written-presentation">
       <div class="resources-title">
@@ -42,6 +42,9 @@
             </div>
           </a>
           </button>
+          <div class="resource-presentation-content">
+              Agenda tu cita y visítanos.
+          </div>
         </li>
 
       </ul>
