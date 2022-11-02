@@ -2,7 +2,7 @@
 
     {* Olitas *}
     <div class="book-olitas">
-      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/separador-15.svg" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/separador-15.svg" alt="" width="85">
     </div>
 
     <div class="book-presentation-container">
@@ -18,15 +18,18 @@
 
       {* Written Presentation *}
         <div class="book-written-presentation">
+
+          <div class="book-publication-date">
+          <span>·{$firstPublication->getData('datePublished')|date_format:"%Y"}·</span>
+          </div>
+          
+
         {if $series}
           <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
               {$series->getLocalizedFullTitle()|escape}
           </a>
         {/if}
 
-          <div class="book-publication-date">
-          <span>·{$firstPublication->getData('datePublished')|date_format:"%Y"}·</span>
-          </div>
           <h1 class="title">
             {$publication->getLocalizedTitle()|escape}
           </h1>
@@ -194,7 +197,7 @@
               <h4> Serie </h4>
               <ul>
                 <li>
-                <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
+                <a href="{url page="catalog" op="series" path=$series->getPath()}">
                 {$series->getLocalizedFullTitle()|escape}
               </a>
                 </li>
@@ -210,7 +213,7 @@
           {* Autores *}
           <div class="book-info-authors info-component">
             <div class="info-component-inner">
-            <h4>Autores</h4>
+            <h4>Autoría</h4>
             {foreach from=$publication->getData('authors') item=author}
               <p>
                 {$author->getFullName()|escape}
