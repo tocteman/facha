@@ -4,7 +4,7 @@
 	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutContext"}
 
   <div class="about-img">
-    <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/maquina.jpg" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/maquina.jpg" alt="">
   </div>
 <div class="about_content">
 	<h1>

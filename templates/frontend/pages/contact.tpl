@@ -5,7 +5,7 @@
   <div class="contact-container">
 
   <div class="contact-img">
-    <img src="https://nyc3.digitaloceanspaces.com/toronjafs/ucuencapress/tarjetas.jpg" alt="">
+      <img src="https://toronjafs.nyc3.cdn.digitaloceanspaces.com/ucuencapress/tarjetas.jpg" alt="">
   </div>
   <div class="contact-copy">
     <h1>
