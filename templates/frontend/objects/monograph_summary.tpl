@@ -23,9 +23,6 @@
       {if $monograph->getSeriesId()}
       <div class="summary-series">
 
-      <a href="{url page="catalog" op="series" path=DAORegistry::getDAO('SeriesDAO')->getById($monograph->getSeriesId())->getPath()}">
-      {DAORegistry::getDAO('SeriesDAO')->getById($monograph->getSeriesId())->getLocalizedFullTitle()}
-      </a>
       </div>
       {/if}
 
