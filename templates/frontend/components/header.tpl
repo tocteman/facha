@@ -18,9 +18,7 @@
 
     <div class="first-row">
     <div class="editorial-center-header">
-    <a href="{$homeUrl}" class="logo">
-      Centro Editorial
-    </a>
+    <a href="{$homeUrl}" class="logo"> </a>
     </div>
       <div class="pkp_site_name_wrapper">
 					<div class="pkp_site_name">
@@ -40,31 +38,69 @@
 					{/if}
 					</div>
 				</div>
-
-
     </div>
+
+
     <div class="second-row">
     <div class="pkp_head_wrapper header-inner">
 
-          <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
+	      <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="libros"}">
           <div class="topbar-item">
             Libros
           </div>
           </a>
 
+		<div class="dropdown">
+		  <button class="dropdown-toggle topbar-item" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Cátedra
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="libros_docentes"}" >
+			Libros Docentes
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="cartillas"}" >
+			Cartillas
+			</a>
+		  </div>
+		</div>
 
-          <a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
-          <div class="topbar-item">
-            Nosotros
-          </div>
-          </a>
 
-          <a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
-          <div class="topbar-item">
-            Contacto
-          </div>
-          </a>
+		<div class="dropdown">
+		  <button class="dropdown-toggle topbar-item" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Divulgación
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="revistas"}" >
+			Revistas
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="congresos"}" >
+			Congresos
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="tesis"}" >
+			Tesis
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="bocadillos"}" >
+			Bocadillos
+			</a>
+		  </div>
+		</div>
 
+		<div class="dropdown">
+		  <button class="dropdown-toggle topbar-item" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Nosotros
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="about"}" >
+			Acerca de
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}" >
+			Envíos
+			</a>
+		    <a class="dropdown-item" href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}" >
+			Contacto
+			</a>
+		  </div>
+		</div>
 
           <a href="{url router=$smarty.const.ROUTE_PAGE page="login"}">
           <div class="topbar-item">
