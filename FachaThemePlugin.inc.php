@@ -48,10 +48,12 @@ class FachaThemePlugin extends ThemePlugin {
 
   public function loadTemplateData($hookName, $args) {
 
- //    $templateMgr = $args[0];
- //    $series = Repo::series()->getCollector()->getMany()->toArray();
+    $templateMgr = $args[0];
+    $lasSeries = Repo::section()
+      ->getCollector()
+      ->getMany();
 
- //    $templateMgr->assign('series', $series);
+    $templateMgr->assign('lasSeries', $lasSeries);
     return false;
 
 	}

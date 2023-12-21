@@ -21,7 +21,7 @@
 	{* Featured *}
   <div class="featured-releases-container">
 	{if !empty($featuredMonographs)}
-   <h1>Nuevos Lanzamientos</h1>
+   <h1>Destacados</h1>
    <div class="catalog-index-link">
         <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
@@ -31,8 +31,7 @@
           </a>
         </button>
       </div>
-    		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
-
+		{include file="frontend/components/monographList.tpl" monographs=$featuredMonographs titleKey="catalog.featured"}
 	{/if}
   </div>
 
@@ -40,7 +39,7 @@
 	{if !empty($newReleases)}
   <div class="new-releases-outer-container">
     <div class="new-releases-inner-container">
-      <h1>Destacados</h1>
+      <h1>Nuevos Lanzamientos</h1>
       <div class="catalog-index-link">
         <button class="main-btn">
           <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog"}">
@@ -50,9 +49,8 @@
           </a>
         </button>
       </div>
-
       {include file="frontend/components/monographList.tpl" monographs=$newReleases titleKey="catalog.newReleases"}
-          </div>
+      </div>
   </div>
 		{include file="frontend/components/resources.tpl"}
 	{/if}

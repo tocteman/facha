@@ -46,17 +46,18 @@
         v-bind="{ 'shown': open === 'series', 'hidden': open !== 'series' }"
       >
       <div class="catalog-series">
-	        {if $series}
+	        {if $lasSeries}
+			{foreach from=$lasSeries item=serie}
               <div class="item series">
-              <h4> Serie </h4>
               <ul>
                 <li>
-                <a href="{url page="catalog" op="series" path=$series->getPath()}" class="book-series">
-                {$series->getLocalizedFullTitle()|escape}
+                <a href="{url page="catalog" op="series" path=$serie->getPath()}" class="book-series">
+                {$serie->getLocalizedFullTitle()|escape}
               </a>
                 </li>
               </ul>
               </div>
+			{/foreach}
             {/if}
     </div>
     </div>

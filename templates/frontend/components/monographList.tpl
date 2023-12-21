@@ -30,7 +30,7 @@
     {/foreach}
   </div>
 	{* Close .row if we have an odd number of titles *}
-	{if $counter > 1 && $counter is even by 1}
+	{if $counter > 3 && $counter is even by 1}
 		</div>
 	{/if}
 </div>
