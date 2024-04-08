@@ -219,6 +219,15 @@
           </div>
         </div>
 
+		<div>
+		      <h4>Palabras Clave</h4>
+                <div>
+			{foreach from=$keywords item=keyword name=keywordLoop}
+		        {$keyword}{if !$smarty.foreach.keywordLoop.last},{/if}
+		    {/foreach}
+                </div>
+          </div>
+
         </div> <!-- info -->
         </div> <!-- info -->
       </div> <!-- v-bind container -->
